@@ -1,0 +1,5 @@
+golang-pty-dev (0.0~git20130701-1) unstable; urgency=low
+
+  * Initial release (Closes: #715523)
+
+ -- Daniel Mizyrycki <mzdaniel@glidelink.net>  Wed, 17 Jul 2013 09:41:19 -0700
