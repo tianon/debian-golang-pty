@@ -1,4 +1,4 @@
-Source: golang-pty-dev
+Source: golang-pty
 Section: devel
 Priority: extra
 Maintainer: Daniel Mizyrycki <mzdaniel@glidelink.net>

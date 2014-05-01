@@ -13,7 +13,7 @@ pushd ${SOURCE_NAME}
 UPSTREAM_CONFIG=$(git log -n 1 --date="short" --pretty="%ad %h" | sed 's/\-//g')
 UPSTREAM_DATE=$(echo ${UPSTREAM_CONFIG} | awk '{print $1}')
 UPSTREAM_HASH=$(echo ${UPSTREAM_CONFIG} | awk '{print $2}')
-ARCHIVE_NAME="golang-pty_0.0~git${UPSTREAM_DATE}.1.${UPSTREAM_HASH}.orig.tar.xz"
+ARCHIVE_NAME="golang-pty_0.0~git${UPSTREAM_DATE}.1.${UPSTREAM_HASH}.orig.tar.gz"
 
 git archive \
     --prefix golang-pty_${UPSTREAM_HASH} \
