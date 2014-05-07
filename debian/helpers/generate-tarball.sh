@@ -1,41 +1,47 @@
 #!/bin/bash
 set -e
 
-UPSTREAM_GIT="git://github.com/kr/pty"
-SOURCE_NAME="golang-pty"
+# usage: $0 [directory [version]]
 
-WORK_DIR=$(mktemp -d)
-pushd ${WORK_DIR}
+directory="$1"
+version="$2"
 
-git clone ${UPSTREAM_GIT} ${SOURCE_NAME}
-pushd ${SOURCE_NAME}
-
-UPSTREAM_CONFIG=$(git log -n 1 --date="short" --pretty="%ad %h" | sed 's/\-//g')
-UPSTREAM_DATE=$(echo ${UPSTREAM_CONFIG} | awk '{print $1}')
-UPSTREAM_HASH=$(echo ${UPSTREAM_CONFIG} | awk '{print $2}')
-ARCHIVE_NAME="golang-pty_0.0~git${UPSTREAM_DATE}.1.${UPSTREAM_HASH}.orig.tar.gz"
-
-git archive \
-    --prefix golang-pty_${UPSTREAM_HASH} \
-    -o ../${ARCHIVE_NAME} \
-    ${UPSTREAM_HASH}
-
-popd
-
-echo $(pwd)
-
-popd
-
-if [ ! -d ../tarballs/ ]; then
-    mkdir -p ../tarballs/
+if [ -z "$directory" ]; then
+	echo >&2 "usage: $0 directory [version]"
+	echo >&2 "   ie: $0 ../tarballs"
+	echo >&2 "       $0 .. 0.0~git19700101.1.0000000"
+	exit 1
 fi
 
-mv ${WORK_DIR}/${ARCHIVE_NAME} ../tarballs/
+debian="$(readlink -f "$(dirname "$BASH_SOURCE")/..")"
+packageLine="$(head -n1 "$debian/changelog")"
+packageName="$(echo "$packageLine" | cut -d' ' -f1)"
+packageDebianVersion="$(echo "$packageLine" | cut -d'(' -f2 | cut -d')' -f1)"
+packageVersion="${packageDebianVersion%-*}" # strip off the "debian version" suffix (-1, -2, -3, etc)
 
-echo ""
-echo "   ../tarballs/${ARCHIVE_NAME}"
-echo ""
-echo "   dch --newversion 0.0~git${UPSTREAM_DATE}.1.${UPSTREAM_HASH}-1 'New upstream release.'"
-echo ""
+if [ -z "$version" ]; then
+	echo >&2 "version not specified, using '$packageVersion' from d/changelog"
+	version="$packageVersion"
+fi
 
-rm -rf ${WORK_DIR}
+tag="upstream/${version//'~'/_}"
+mkdir -p "$directory"
+directory="$(readlink -f "$directory")"
+archive="$directory/${packageName}_${version}.orig.tar.gz"
+commit="$(git log -1 --pretty='%h' "$tag" -- || true)"
+
+if [ -z "$commit" ]; then
+	echo >&2 "error: $tag does not appear to be a valid tag"
+	echo >&2 '  did you forget to run "create-upstream-tag.sh"?'
+	exit 1
+fi
+
+gitRoot="$(git rev-parse --show-toplevel)"
+( set -x
+	cd "$gitRoot"
+	git archive \
+		--format='tar.gz' \
+		--prefix="${packageName}_${commit}/" \
+		"$tag" \
+			> "$archive"
+)
