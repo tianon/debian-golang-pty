@@ -2,8 +2,9 @@ Source: golang-pty
 Section: devel
 Priority: extra
 Maintainer: Daniel Mizyrycki <mzdaniel@glidelink.net>
-Uploaders: Docker Packaging Team <docker-maint@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 9)
+Uploaders: Docker Packaging Team <docker-maint@lists.alioth.debian.org>,
+           Tianon Gravi <admwiggin@gmail.com>
+Build-Depends: debhelper (>= 9), dh-golang, golang-go
 Standards-Version: 3.9.5
 Homepage: https://github.com/kr/pty
 Vcs-Git: git://anonscm.debian.org/pkg-go/packages/golang-pty.git
@@ -11,6 +12,8 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-go/packages/golang-pty.git
 
 Package: golang-pty-dev
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Go package for using unix pseudo-terminals
  Pty is a Go package for using unix pseudo-terminals.
+ .
+ This package contains the source.
