@@ -1,0 +1,5 @@
+*.debhelper.log
+*.substvars
+golang-pty-dev/
+files
+tmp/
