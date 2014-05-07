@@ -1,3 +1,9 @@
+golang-pty (0.0~git20140315.1.67e2db2-1) UNRELEASED; urgency=medium
+
+  * Upstream bump to 67e2db2 (2014-03-15)
+
+ -- Tianon Gravi <admwiggin@gmail.com>  Thu, 01 May 2014 10:26:04 -0600
+
 golang-pty-dev (0.0~git20130701-1) unstable; urgency=low
 
   * Initial release (Closes: #715523)
