@@ -1,3 +1,0 @@
-git clone git://github.com/kr/pty golang-pty-dev
-(cd golang-pty-dev; git checkout 27435c699baee43a12e025d8cfde2ee3cbe0ceb6)
-tar czvf golang-pty-dev_0.0~git20130701.orig.tar.gz golang-pty-dev --exclude=.git --exclude=.gitignore
