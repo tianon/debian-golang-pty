@@ -19,6 +19,4 @@ RUN git fetch --tags && ./debian/helpers/generate-tarball.sh ../
 RUN origtargz --unpack
 
 # tianon is _really_ lazy, and likes a preseeded bash history
-RUN echo 'origtargz --unpack && debuild -us -uc --lintian-opts "-EvIL+pedantic"' >> /root/.bash_history
-
-CMD [ "debuild", "-us", "-uc", "--lintian-opts", "-EvIL+pedantic" ]
+RUN echo 'origtargz --unpack && dpkg-buildpackage -us -uc && lintian -EvIL+pedantic' >> /root/.bash_history
