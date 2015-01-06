@@ -12,7 +12,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-go/packages/golang-pty.git
 
 Package: golang-pty-dev
 Architecture: all
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}
 Description: Go package for using unix pseudo-terminals
  Pty is a Go package for using unix pseudo-terminals.
  .
