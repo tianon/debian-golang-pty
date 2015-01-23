@@ -1,3 +1,9 @@
+golang-pty (0.0~git20141217.1.05017fc-1) UNRELEASED; urgency=medium
+
+  * Upstream bump to 05017fc (2014-12-17)
+
+ -- Tianon Gravi <admwiggin@gmail.com>  Fri, 23 Jan 2015 21:10:32 +0000
+
 golang-pty (0.0~git20140315.1.67e2db2-1) unstable; urgency=medium
 
   [ Paul Tagliamonte ]
