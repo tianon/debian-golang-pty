@@ -1,9 +1,8 @@
 Source: golang-pty
 Section: devel
 Priority: extra
-Maintainer: Daniel Mizyrycki <mzdaniel@glidelink.net>
-Uploaders: Docker Packaging Team <docker-maint@lists.alioth.debian.org>,
-           Tianon Gravi <admwiggin@gmail.com>
+Maintainer: Tianon Gravi <admwiggin@gmail.com>
+Uploaders: Docker Packaging Team <docker-maint@lists.alioth.debian.org>
 Build-Depends: debhelper (>= 9), dh-golang, golang-go
 Standards-Version: 3.9.5
 Homepage: https://github.com/kr/pty

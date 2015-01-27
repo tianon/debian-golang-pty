@@ -1,6 +1,7 @@
 golang-pty (0.0~git20141217.1.05017fc-1) UNRELEASED; urgency=medium
 
   * Upstream bump to 05017fc (2014-12-17)
+  * Remove Daniel Mizyrycki from Uploaders. Thanks for all your work!
 
  -- Tianon Gravi <admwiggin@gmail.com>  Fri, 23 Jan 2015 21:10:32 +0000
 
