@@ -1,10 +1,10 @@
-golang-pty (0.0~git20141217.141937.1.05017fc-1) UNRELEASED; urgency=medium
+golang-pty (0.0~git20141217.141937.1.05017fc-1~exp1) experimental; urgency=low
 
   * Upstream bump to 05017fc (2014-12-17)
   * Update packaging to utilize dh-golang appropriately
   * Remove Daniel Mizyrycki from Uploaders. Thanks for all your work!
 
- -- Tianon Gravi <admwiggin@gmail.com>  Fri, 23 Jan 2015 21:10:32 +0000
+ -- Tianon Gravi <admwiggin@gmail.com>  Wed, 28 Jan 2015 23:00:36 -0700
 
 golang-pty (0.0~git20140315.1.67e2db2-1) unstable; urgency=medium
 
