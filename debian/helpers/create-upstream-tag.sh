@@ -23,7 +23,7 @@ dir="$(dirname "$(readlink -f "$BASH_SOURCE")")"
 git fetch -qp --all
 commit="$(git log -1 --date='short' --pretty='%h' "$upstreamCommit" --)"
 
-unix="$(git log -1 --format='%at')"
+unix="$(git log -1 --format='%at' "$commit" --)"
 gitTime="$(date --date="@$unix" +'%Y%m%d.%H%M%S')"
 version="0.0~git${gitTime}.1.${commit}"
 
