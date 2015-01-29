@@ -23,7 +23,9 @@ dir="$(dirname "$(readlink -f "$BASH_SOURCE")")"
 git fetch -qp --all
 commit="$(git log -1 --date='short' --pretty='%h' "$upstreamCommit" --)"
 
-version="$(git log -1 --date='short' --pretty='0.0~git%ad.1.%h' "$commit" -- | sed 's/-//g')"
+unix="$(git log -1 --format='%at')"
+gitTime="$(date --date="@$unix" +'%Y%m%d.%H%M%S')"
+version="0.0~git${gitTime}.1.${commit}"
 
 echo
 echo "commit $commit becomes version $version"
