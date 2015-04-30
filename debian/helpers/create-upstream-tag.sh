@@ -2,11 +2,13 @@
 set -e
 
 upstreamCommit="$1"
+dayVersion="${2:-1}"
 
 if [ -z "$upstreamCommit" ]; then
-	echo >&2 "usage: $0 commit"
+	echo >&2 "usage: $0 commit [day-version]"
 	echo >&2 "   ie: $0 8d849acb"
 	echo >&2 "   ie: $0 upstream # to tag the latest local upstream commit"
+	echo >&2 "   ie: $0 upstream 2 # to tag a second commit in the same day"
 	echo >&2
 	echo >&2 'DO NOT USE BRANCH NAMES OR TAG NAMES FROM UPSTREAM!'
 	echo >&2 'ONLY COMMIT HASHES OR "upstream" WILL WORK PROPERLY!'
@@ -20,12 +22,12 @@ fi
 dir="$(dirname "$(readlink -f "$BASH_SOURCE")")"
 "$dir/setup-upstream-remote.sh"
 
-git fetch -qp --all
+git fetch -qp --all || true
 commit="$(git log -1 --date='short' --pretty='%h' "$upstreamCommit" --)"
 
 unix="$(git log -1 --format='%at' "$commit" --)"
-gitTime="$(date --date="@$unix" +'%Y%m%d.%H%M%S')"
-version="0.0~git${gitTime}.1.${commit}"
+gitTime="$(date --date="@$unix" +'%Y%m%d')"
+version="0.0~git${gitTime}.${dayVersion}.${commit}"
 
 echo
 echo "commit $commit becomes version $version"
