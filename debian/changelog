@@ -1,3 +1,9 @@
+golang-pty (0.0~git20150511.1.5cf931e-1) UNRELEASED; urgency=medium
+
+  * Upstream bump to 5cf931e (2015-05-11).
+
+ -- Tianon Gravi <admwiggin@gmail.com>  Thu, 04 Jun 2015 15:58:31 +0000
+
 golang-pty (0.0~git20141217.1.05017fc-1) unstable; urgency=medium
 
   * Upload to unstable (and update the version number to be appropriately less
