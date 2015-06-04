@@ -26,7 +26,7 @@ git fetch -qp --all || true
 commit="$(git log -1 --date='short' --pretty='%h' "$upstreamCommit" --)"
 
 unix="$(git log -1 --format='%at' "$commit" --)"
-gitTime="$(date --date="@$unix" +'%Y%m%d')"
+gitTime="$(TZ=UTC date --date="@$unix" +'%Y%m%d')"
 version="0.0~git${gitTime}.${dayVersion}.${commit}"
 
 echo
